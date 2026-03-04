@@ -51,7 +51,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--model", type=str, default="SELLM")
 
     parser.add_argument("--data", type=str, default="ETTh1")
-    parser.add_argument("--root_path", type=str, default=r"D:\TimeSeriesForecasting\AutoTimes\Timeseriesdata")
+    parser.add_argument("--root_path", type=str, default=r"")
     parser.add_argument("--data_path", type=str, default="ETTh1.csv")
     parser.add_argument("--test_data_path", type=str, default="ETTh1.csv")
 
