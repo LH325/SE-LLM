@@ -56,8 +56,8 @@ class Dataset_ETT_hour(Dataset):
             data = df_data.values
 
         data_name = self.data_path.split('.')[0]
-        self.data_stamp = torch.load(os.path.join(self.root_path, f'{data_name}.pt'))
-        self.data_stamp = self.data_stamp[border1:border2]
+        # self.data_stamp = torch.load(os.path.join(self.root_path, f'{data_name}.pt'))
+        # self.data_stamp = self.data_stamp[border1:border2]
         self.data_x = data[border1:border2]
         self.data_y = data[border1:border2]
 
@@ -70,10 +70,10 @@ class Dataset_ETT_hour(Dataset):
         r_end = r_begin + self.label_len + self.pred_len
         seq_x = self.data_x[s_begin:s_end, feat_id:feat_id+1]
         seq_y = self.data_y[r_begin:r_end, feat_id:feat_id+1]
-        seq_x_mark = self.data_stamp[s_begin:s_end:self.token_len]
-        seq_y_mark = self.data_stamp[s_end:r_end:self.token_len]
+        # seq_x_mark = self.data_stamp[s_begin:s_end:self.token_len]
+        # seq_y_mark = self.data_stamp[s_end:r_end:self.token_len]
 
-        return seq_x, seq_y, seq_x_mark, seq_y_mark
+        return seq_x, seq_y, seq_x, seq_x
 
     def __len__(self):
         return (len(self.data_x) - self.seq_len - self.pred_len + 1) * self.enc_in
@@ -115,9 +115,6 @@ class Dataset_Custom(Dataset):
         border1 = border1s[self.set_type]
         border2 = border2s[self.set_type]
 
-        # if self.set_type == 0:
-        #     border2 = (border2 - self.seq_len) * 5 // 100 + self.seq_len
-
         cols_data = df_raw.columns[1:]
         df_data = df_raw[cols_data]
 
@@ -128,8 +125,8 @@ class Dataset_Custom(Dataset):
         else:
             data = df_data.values
         data_name = self.data_path.split('.')[0]
-        self.data_stamp = torch.load(os.path.join(self.root_path, f'{data_name}.pt'))
-        self.data_stamp = self.data_stamp[border1:border2]
+        # self.data_stamp = torch.load(os.path.join(self.root_path, f'{data_name}.pt'))
+        # self.data_stamp = self.data_stamp[border1:border2]
         self.data_x = data[border1:border2]
         self.data_y = data[border1:border2]
 
@@ -142,9 +139,9 @@ class Dataset_Custom(Dataset):
         r_end = r_begin + self.label_len + self.pred_len
         seq_x = self.data_x[s_begin:s_end, feat_id:feat_id+1]
         seq_y = self.data_y[r_begin:r_end, feat_id:feat_id+1]
-        seq_x_mark = self.data_stamp[s_begin:s_end:self.token_len]
-        seq_y_mark = self.data_stamp[s_end:r_end:self.token_len]
-        return seq_x, seq_y, seq_x_mark, seq_y_mark
+        # seq_x_mark = self.data_stamp[s_begin:s_end:self.token_len]
+        # seq_y_mark = self.data_stamp[s_end:r_end:self.token_len]
+        return seq_x, seq_y, seq_x, seq_x
 
     def __len__(self):
         return (len(self.data_x) - self.seq_len - self.pred_len + 1) * self.enc_in
