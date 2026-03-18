@@ -218,7 +218,7 @@ class Exp_Long_Term_Forecast(Exp_Basic):
                     f"Train Loss: {train_loss:.7f} Vali Loss: {val_loss:.7f} Test Loss: {tst_loss:.7f}"
                 )
 
-            stopper(tst_loss, self.model, ckpt_dir)
+            stopper(val_loss, self.model, ckpt_dir)
             if stopper.early_stop:
                 if self._is_main_process():
                     print("Early stopping")
