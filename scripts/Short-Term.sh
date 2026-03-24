@@ -11,7 +11,6 @@ python -u run.py \
   --itr 1 \
   --learning_rate 0.00005 \
   --loss 'SMAPE' \
-  --use_amp 'False' \
   --mlp_hidden_dim 256 \
   --mlp_activation tanh \
   --cosine \
@@ -31,7 +30,6 @@ python -u run.py \
   --itr 1 \
   --learning_rate 0.00005 \
   --loss 'SMAPE' \
-  --use_amp 'False' \
   --mlp_hidden_dim 512 \
   --mlp_activation relu \
   --cosine \
@@ -51,7 +49,6 @@ python -u run.py \
   --itr 1 \
   --learning_rate 0.00001 \
   --loss 'SMAPE' \
-  --use_amp 'False' \
   --mlp_hidden_dim 8192 \
   --mlp_activation relu \
   --cosine \
@@ -71,7 +68,6 @@ python -u run.py \
   --itr 1 \
   --learning_rate 0.0001 \
   --loss 'SMAPE' \
-  --use_amp 'False' \
   --mlp_hidden_dim 1024 \
   --mlp_activation relu \
   --cosine \
@@ -91,7 +87,6 @@ python -u run.py \
   --itr 1 \
   --learning_rate 0.0001 \
   --loss 'SMAPE' \
-  --use_amp 'False' \
   --mlp_hidden_dim 512 \
   --mlp_activation relu \
   --cosine \
@@ -111,7 +106,6 @@ python -u run.py \
   --itr 1 \
   --learning_rate 0.0001 \
   --loss 'SMAPE' \
-  --use_amp 'False' \
   --mlp_hidden_dim 1024 \
   --mlp_activation relu \
   --cosine \
