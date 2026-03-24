@@ -1,5 +1,3 @@
-# The code will be continuously updated due to the busy schedule of conference preparations.
-
 # SE-LLM
 **Weights** Reproduced experimental results
 
