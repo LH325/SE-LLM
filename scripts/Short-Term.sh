@@ -1,0 +1,119 @@
+python -u run.py \
+  --task_name short_term_forecast \
+  --is_training 1 \
+  --root_path m4 \
+  --seasonal_patterns 'Yearly' \
+  --data m4 \
+  --batch_size 32 \
+  --word_size 1000 \
+  --llm_ckp_dir huggyllama/llama-7b \
+  --des 'Exp' \
+  --itr 1 \
+  --learning_rate 0.00005 \
+  --loss 'SMAPE' \
+  --use_amp 'False' \
+  --mlp_hidden_dim 256 \
+  --mlp_activation tanh \
+  --cosine \
+  --tmax 10 \
+  --weight_decay 0.0000001
+
+python -u run.py \
+  --task_name short_term_forecast \
+  --is_training 1 \
+  --root_path m4 \
+  --seasonal_patterns 'Quarterly' \
+  --data m4 \
+  --batch_size 24 \
+  --word_size 1000 \
+  --llm_ckp_dir huggyllama/llama-7b \
+  --des 'Exp' \
+  --itr 1 \
+  --learning_rate 0.00005 \
+  --loss 'SMAPE' \
+  --use_amp 'False' \
+  --mlp_hidden_dim 512 \
+  --mlp_activation relu \
+  --cosine \
+  --tmax 10 \
+  --weight_decay 0.000005
+
+python -u run.py \
+  --task_name short_term_forecast \
+  --is_training 1 \
+  --root_path m4 \
+  --seasonal_patterns 'Monthly' \
+  --data m4 \
+  --batch_size 8 \
+  --word_size 1000 \
+  --llm_ckp_dir huggyllama/llama-7b \
+  --des 'Exp' \
+  --itr 1 \
+  --learning_rate 0.00001 \
+  --loss 'SMAPE' \
+  --use_amp 'False' \
+  --mlp_hidden_dim 8192 \
+  --mlp_activation relu \
+  --cosine \
+  --tmax 10 \
+  --weight_decay 0.000001
+
+python -u run.py \
+  --task_name short_term_forecast \
+  --is_training 1 \
+  --root_path m4 \
+  --seasonal_patterns 'Weekly' \
+  --data m4 \
+  --batch_size 24 \
+  --word_size 1000 \
+  --llm_ckp_dir huggyllama/llama-7b \
+  --des 'Exp' \
+  --itr 1 \
+  --learning_rate 0.0001 \
+  --loss 'SMAPE' \
+  --use_amp 'False' \
+  --mlp_hidden_dim 1024 \
+  --mlp_activation relu \
+  --cosine \
+  --tmax 10 \
+  --weight_decay 0
+
+python -u run.py \
+  --task_name short_term_forecast \
+  --is_training 1 \
+  --root_path m4 \
+  --seasonal_patterns 'Daily' \
+  --data m4 \
+  --batch_size 52 \
+  --word_size 1000 \
+  --llm_ckp_dir huggyllama/llama-7b \
+  --des 'Exp' \
+  --itr 1 \
+  --learning_rate 0.0001 \
+  --loss 'SMAPE' \
+  --use_amp 'False' \
+  --mlp_hidden_dim 512 \
+  --mlp_activation relu \
+  --cosine \
+  --tmax 10 \
+  --weight_decay 0.000005
+
+python -u run.py \
+  --task_name short_term_forecast \
+  --is_training 1 \
+  --root_path m4 \
+  --seasonal_patterns 'Hourly' \
+  --data m4 \
+  --batch_size 52 \
+  --word_size 1000 \
+  --llm_ckp_dir huggyllama/llama-7b \
+  --des 'Exp' \
+  --itr 1 \
+  --learning_rate 0.0001 \
+  --loss 'SMAPE' \
+  --use_amp 'False' \
+  --mlp_hidden_dim 1024 \
+  --mlp_activation relu \
+  --cosine \
+  --tmax 10 \
+  --weight_decay 0

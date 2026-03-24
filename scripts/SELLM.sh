@@ -1,0 +1,136 @@
+for test_pred_len in 96 192 336 720
+do
+
+python -u run.py \
+  --task_name long_term_forecast \
+  --is_training 1 \
+  --root_path root_path \
+  --data_path ETTh1.csv \
+  --model_id \
+  --model $model_name \
+  --data ETTh1 \
+  --seq_len 672 \
+  --label_len 576 \
+  --token_len 96 \
+  --test_seq_len 672 \
+  --test_label_len 576 \
+  --test_pred_len 96 \
+  --batch_size 256 \
+  --word_size 1500 \
+  --learning_rate 0.0001 \
+  --weight_decay 0 \
+  --train_epochs 20 \
+  --use_amp \
+  --gpu 0 \
+  --cosine \
+  --tmax 10 \
+  --mix_embeds \
+  --mlp_activation tanh \
+  --mlp_hidden_dim 256 \
+  --use_ETTh \
+  --lradj type1
+
+python -u run.py \
+  --task_name long_term_forecast \
+  --is_training 1 \
+  --root_path root_path \
+  --data_path weather.csv \
+  --model_id \
+  --model $model_name \
+  --data custom \
+  --seq_len 672 \
+  --label_len 576 \
+  --token_len 96 \
+  --test_seq_len 672 \
+  --test_label_len 576 \
+  --test_pred_len 96 \
+  --batch_size 384 \
+  --word_size 1500 \
+  --learning_rate 0.0001 \
+  --weight_decay 0.00001 \
+  --train_epochs 20 \
+  --use_amp \
+  --gpu 0 \
+  --cosine \
+  --mlp_activation Relu \
+  --mlp_hidden_dim 1024 \
+  --lradj type2
+
+python -u run.py \
+  --task_name long_term_forecast \
+  --is_training 1 \
+  --root_path root_path \
+  --data_path traffic.csv \
+  --model_id  \
+  --model $model_name \
+  --data custom \
+  --seq_len 672 \
+  --label_len 576 \
+  --token_len 96 \
+  --test_seq_len 672 \
+  --test_label_len 576 \
+  --test_pred_len 96 \
+  --batch_size 2048 \
+   --word_size 1500 \
+  --learning_rate 0.0001 \
+  --weight_decay 0.00001 \
+  --train_epochs 20 \
+  --use_amp \
+  --gpu 0 \
+  --cosine \
+  --mlp_activation relu \
+  --mlp_hidden_dim 2048 \
+  --lradj type1
+
+python -u run.py \
+  --task_name long_term_forecast \
+  --is_training 1 \
+  --root_path root_path \
+  --data_path electricity.csv \
+  --model_id  \
+  --model $model_name \
+  --data custom \
+  --seq_len 672 \
+  --label_len 576 \
+  --token_len 96 \
+  --test_seq_len 672 \
+  --test_label_len 576 \
+  --test_pred_len 96 \
+  --batch_size 1024 \
+  --word_size 1500 \
+  --learning_rate 0.0001 \
+  --weight_decay 0.00001 \
+  --train_epochs 20 \
+  --use_amp \
+  --gpu 0 \
+  --cosine \
+  --mlp_activation relu \
+  --mlp_hidden_dim 2048 \
+  --lradj type1
+
+  python -u run.py \
+  --task_name long_term_forecast \
+  --is_training 1 \
+  --root_path root_path \
+  --data_path solar_AL.txt \
+  --model_id  \
+  --model $model_name \
+  --data Solar \
+  --seq_len 672 \
+  --label_len 576 \
+  --token_len 96 \
+  --test_seq_len 672 \
+  --test_label_len 576 \
+  --test_pred_len 96 \
+  --batch_size 2048 \
+  --word_size 1500 \
+  --learning_rate 0.00005 \
+  --weight_decay 0 \
+  --train_epochs 20 \
+  --use_amp \
+  --gpu 0 \
+  --cosine \
+  --mlp_activation relu \
+  --mlp_hidden_dim 1024 \
+  --lradj type1
+
