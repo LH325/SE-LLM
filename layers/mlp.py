@@ -15,8 +15,6 @@ class MLP(nn.Module):
             act_layer = nn.ReLU()
         elif activation == 'tanh':
             act_layer = nn.Tanh()
-        elif activation == 'gelu':
-            act_layer = nn.GELU()
         else:
             raise NotImplementedError(f'Unsupported activation: {activation}')
 
