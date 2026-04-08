@@ -24,7 +24,6 @@ python -u run.py \
   --gpu 0 \
   --cosine \
   --tmax 10 \
-  --mix_embeds \
   --mlp_activation tanh \
   --mlp_hidden_dim 256 \
   --use_ETTh \
