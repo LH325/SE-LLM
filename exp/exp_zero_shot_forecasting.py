@@ -188,7 +188,7 @@ class Exp_Zero_Shot_Forecast(Exp_Basic):
                     )
                 )
 
-            stopper(avg_te2, self.model, ckpt_dir)
+            stopper(avg_va, self.model, ckpt_dir)
             if stopper.early_stop:
                 if self._is_main_process():
                     print("Early stopping")
