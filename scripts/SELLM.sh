@@ -124,7 +124,7 @@ python -u run.py \
   --test_pred_len 96 \
   --batch_size 2048 \
   --word_size 1500 \
-  --learning_rate 0.00005 \
+  --learning_rate 0.000005 \
   --weight_decay 0 \
   --train_epochs 20 \
   --use_amp \
