@@ -80,7 +80,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--mlp_activation", type=str, default="relu")
 
     parser.add_argument("--train_epochs", type=int, default=50)
-    parser.add_argument("--patience", type=int, default=15)
+    parser.add_argument("--patience", type=int, default=3)
     parser.add_argument("--learning_rate", type=float, default=0.0001)
     parser.add_argument("--weight_decay", type=float, default=0.00001)
     parser.add_argument("--loss", type=str, default="MSE")
