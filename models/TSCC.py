@@ -31,28 +31,6 @@ class VAE(nn.Module):
         noise = x - reconstructed
         return noise, reconstructed, mu, logvar
 
-class CrossModalAligner(nn.Module):
-    def __init__(self, d_model=896):
-        super().__init__()
-        self.d_model = d_model
-        self.query = nn.Linear(d_model, d_model)
-        self.key = nn.Linear(d_model, d_model)
-        self.value = nn.Linear(d_model, d_model)
-
-        self.QK = nn.Linear(1000, 896)
-    def forward(self, word, time_seq):
-        time_seq = time_seq.mean(1).unsqueeze(0)
-        word = word.unsqueeze(0)
-
-        Q = self.query(word)
-        K = self.key(time_seq)
-        V = self.value(time_seq)
-        attn_scores = torch.matmul(Q, K.transpose(1, 2)) / (self.d_model ** 0.5)
-        attn_weights = F.softmax(attn_scores, dim=-1)
-        aligned_time = torch.matmul(attn_weights, V)
-        aligned_time = aligned_time.squeeze(0)
-
-        return aligned_time
 class CrossModalAttention(nn.Module):
     def __init__(self, d_model=896):
         super().__init__()
@@ -60,7 +38,6 @@ class CrossModalAttention(nn.Module):
         self.query = nn.Linear(d_model, d_model)
         self.key = nn.Linear(d_model, d_model)
         self.value = nn.Linear(d_model, d_model)
-        self.QK = nn.Linear(1000, 896)
     def forward(self, time_seq, word):
         B,_,_ = time_seq.shape
         text_emb = word.unsqueeze(0)
@@ -102,7 +79,6 @@ class AlignFusionModel(nn.Module):
     def __init__(self):
         super().__init__()
         self.attention = CrossModalAttention()
-        self.t2t = CrossModalAligner()
         self.fusion = GatedFusion()
 
         self.noise = VAE()
