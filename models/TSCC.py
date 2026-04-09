@@ -39,7 +39,7 @@ class CrossModalAligner(nn.Module):
         self.key = nn.Linear(d_model, d_model)
         self.value = nn.Linear(d_model, d_model)
 
-        # self.QK = nn.Linear(1000, 896)
+        self.QK = nn.Linear(1000, 896)
     def forward(self, word, time_seq):
         time_seq = time_seq.mean(1).unsqueeze(0)
         word = word.unsqueeze(0)
@@ -60,7 +60,7 @@ class CrossModalAttention(nn.Module):
         self.query = nn.Linear(d_model, d_model)
         self.key = nn.Linear(d_model, d_model)
         self.value = nn.Linear(d_model, d_model)
-        # self.QK = nn.Linear(1000, 896)
+        self.QK = nn.Linear(1000, 896)
     def forward(self, time_seq, word):
         B,_,_ = time_seq.shape
         text_emb = word.unsqueeze(0)
@@ -102,7 +102,7 @@ class AlignFusionModel(nn.Module):
     def __init__(self):
         super().__init__()
         self.attention = CrossModalAttention()
-        # self.t2t = CrossModalAligner()
+        self.t2t = CrossModalAligner()
         self.fusion = GatedFusion()
 
         self.noise = VAE()
@@ -110,19 +110,16 @@ class AlignFusionModel(nn.Module):
     def forward(self, time_data, text_emb):
 
         aligned_text = self.attention(time_data, text_emb)
-        # C = aligned_text
         noise, reconstructed, mu, logvar = self.noise(aligned_text)
 
         aligned_text = aligned_text - noise
 
         fused_output = self.fusion(time_data, aligned_text, text_emb,1)
-        # B = fused_output
         noise_output = self.fusion(time_data, noise, text_emb, 2)
-        # a = fused_output.mean()
-        # b = noise_output.mean()
+
         
         fused_output = fused_output+noise_output
 
         return fused_output
-        # return fused_output, C, noise, aligned_text, B, noise_output
+  
 
