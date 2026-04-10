@@ -38,7 +38,8 @@ class CrossModalAligner(nn.Module):
         self.query = nn.Linear(d_model, d_model)
         self.key = nn.Linear(d_model, d_model)
         self.value = nn.Linear(d_model, d_model)
-
+        # for ETTh
+        # self.QK = nn.Linear(1500, 896)
         self.QK = nn.Linear(1000, 896)
     def forward(self, word, time_seq):
         time_seq = time_seq.mean(1).unsqueeze(0)
@@ -60,6 +61,8 @@ class CrossModalAttention(nn.Module):
         self.query = nn.Linear(d_model, d_model)
         self.key = nn.Linear(d_model, d_model)
         self.value = nn.Linear(d_model, d_model)
+        # for ETTh
+        # self.QK = nn.Linear(1500, 896)
         self.QK = nn.Linear(1000, 896)
     def forward(self, time_seq, word):
         B,_,_ = time_seq.shape
