@@ -125,7 +125,7 @@ python -u run.py \
   --word_size 1500 \
   --learning_rate 0.000005 \
   --weight_decay 0 \
-  --train_epochs 20 \
+  --train_epochs 15 \
   --use_amp \
   --gpu 0 \
   --cosine \
