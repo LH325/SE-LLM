@@ -119,6 +119,17 @@ class AlignFusionModel(nn.Module):
     def __init__(self):
         super().__init__()
         self.attention = CrossModalAttention()
+        # CrossModalAligner performs the reverse alignment direction compared with
+        # CrossModalAttention. While CrossModalAttention uses temporal representations
+        # as queries to retrieve semantic/text features, CrossModalAligner uses
+        # semantic/text representations as queries to align temporal features.
+
+        # In our long-term forecasting experiments, this additional text-guided temporal
+        # alignment did not consistently bring performance improvements, and therefore
+        # it is not the key component used to obtain the reported main results.
+        # However, we keep this module as an optional complementary design, since it may
+        # be beneficial for other tasks, datasets, or backbone architectures when combined
+        # with the proposed framework.
         self.t2t = CrossModalAligner()
         self.fusion = GatedFusion()
 
