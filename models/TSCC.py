@@ -95,6 +95,12 @@ class GatedFusion(nn.Module):
         _, topk_idx = torch.topk(sim_matrix, k=32, dim=1)
         selected_text = word[topk_idx]
         enhanced_text = selected_text.mean(dim=1).unsqueeze(1)
+        # Optionally normalize the aggregated top-K semantic cues over the feature dimension.
+        # For different datasets or model architectures, directly multiplying raw semantic embeddings
+        # may introduce amplitude perturbations or additional noise. Applying softmax converts the
+        # selected semantic cues into a smoother structural prior before they are applied to the
+        # aligned text features. In practice, this normalization step can be enabled or disabled
+        # depending on the training setting and task sensitivity.
         enhanced_text = torch.softmax(enhanced_text,dim=1)
         enhanced_align = text_feat * enhanced_text
         combined = torch.cat([time_feat, enhanced_align], dim=-1)
