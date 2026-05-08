@@ -3,7 +3,15 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torch
 import torch.nn as nn
-
+# The following VAE configuration is used for all long-term forecasting
+# experiments reported in our paper. The input dimension is set to 896
+# to match the hidden representation size used in our experimental setup,
+# and the latent dimension is set to 8 for a lightweight latent bottleneck.
+        
+# These hyperparameters are not fixed architectural constraints. They can
+# be adjusted for different datasets, forecasting tasks, or backbone model
+# structures according to the representation dimension, task complexity,
+# and computational budget.
 class VAE(nn.Module):
     def __init__(self, input_dim=896, latent_dim=8):
         super().__init__()
