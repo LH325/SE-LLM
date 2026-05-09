@@ -87,3 +87,35 @@ def add_time_adapter(model, rank=128, num_layers=2):
 
     return model
   
+# gpt2
+
+class LoRALayer(nn.Module):
+    def __init__(self, original_layer, rank=16):
+        super().__init__()
+        self.original_layer = original_layer
+        self.lora_A = nn.Linear(768, rank)
+        self.lora_C = nn.LSTM(rank,768,batch_first=True)
+        self.lora_D = nn.LSTM(768,rank,batch_first=True)
+        self.lora_B = nn.Linear(rank, 768)
+
+        nn.init.normal_(self.lora_A.weight, std=0.02)
+        nn.init.zeros_(self.lora_B.weight)
+
+    def forward(self, x):
+        original_output = self.original_layer(x)
+        A = self.lora_A(x)
+        C,(_,_) = self.lora_C(A)
+        D,(_,_) = self.lora_D(C)
+        B = self.lora_B(D)
+
+        return original_output + B
+
+def add_lora_to_gpt2(model, rank=8):
+    for layer in model.h: 
+        layer.attn.c_proj = LoRALayer(layer.attn.c_proj, rank)
+        # The number of added layers can be selected according to the task requirements. In our experiments, we applied it twice.
+        layer.attn.c_proj = LoRALayer(layer.attn.c_proj, rank)
+    return model
+
+
+
