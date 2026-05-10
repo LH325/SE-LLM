@@ -117,5 +117,11 @@ def add_lora_to_gpt2(model, rank=8):
         layer.attn.c_proj = LoRALayer(layer.attn.c_proj, rank)
     return model
 
-
+'''
+The rank of TimeAdapter can be adjusted depending on the task, dataset, and prediction horizon. In our main experiments, 
+we used a fixed rank setting without further tuning for different tasks. 
+In some ablation settings, different ranks may perform better under different horizons. For example, on ETTm1 with GPT4TS, 
+rank=8 works better for the 96-step horizon, while rank=2 performs better for the 720-step horizon.
+Users may adjust this hyperparameter according to their own experimental settings.
+'''
 
