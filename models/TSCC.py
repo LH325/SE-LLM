@@ -139,6 +139,12 @@ class AlignFusionModel(nn.Module):
 
         aligned_text = self.attention(time_data, text_emb)
         DA, _, mu, logvar = self.noise(aligned_text)
+        # aligned_text is the VAE input C and is not modified by the VAE.
+        # The VAE reconstructs the anomaly-related component DC_decoded and
+        # computes DA = C - DC_decoded. Before fusion, we recover DC using the
+        # equivalent residual form DC = C - DA to explicitly preserve the numerical
+        # decomposition consistency C = DA + DC. This does not change the AM-VAE
+        # formulation in the paper.
 
         DC = aligned_text - DA
         fused_output = self.fusion(time_data, DC, text_emb,1)
