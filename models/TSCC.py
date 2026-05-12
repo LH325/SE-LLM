@@ -4,7 +4,6 @@ import torch.nn.functional as F
 import torch
 import torch.nn as nn
 
-
 # =========================
 # AM-VAE Module in TSCC
 # =========================
