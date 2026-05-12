@@ -223,7 +223,7 @@ class GatedFusion(nn.Module):
 
         # Channel Dependency Enhancement:
         # Concatenate temporal embeddings H with the enhanced semantic representation.
-        # This corresponds to MLP([H, DA]) or MLP([H, DC]) in the paper.
+        # This corresponds to MLP([H, \overline{DA}]) or MLP([H, \overline{DC}]) in the paper.
         combined = torch.cat([time_feat, enhanced_align], dim=-1)
 
         # Generate channel-wise gates conditioned on temporal representations.
