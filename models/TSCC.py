@@ -35,9 +35,9 @@ class VAE(nn.Module):
         h = self.encoder(x)
         mu, logvar = self.fc_mu(h), self.fc_var(h)
         z = self.reparameterize(mu, logvar)
-        reconstructed = self.decoder(z)
-        noise = x - reconstructed
-        return noise, reconstructed, mu, logvar
+        DC = self.decoder(z)
+        DA = x - DC
+        return DA, DC, mu, logvar
 
 class CrossModalAligner(nn.Module):
     def __init__(self, d_model=896):
@@ -138,15 +138,14 @@ class AlignFusionModel(nn.Module):
     def forward(self, time_data, text_emb):
 
         aligned_text = self.attention(time_data, text_emb)
-        noise, reconstructed, mu, logvar = self.noise(aligned_text)
+        DA, _, mu, logvar = self.noise(aligned_text)
 
-        aligned_text = aligned_text - noise
+        DC = aligned_text - DA
+        fused_output = self.fusion(time_data, DC, text_emb,1)
+        noise_output = self.fusion(time_data, DA, text_emb, 2)
 
-        fused_output = self.fusion(time_data, aligned_text, text_emb,1)
-        noise_output = self.fusion(time_data, noise, text_emb, 2)
-
-        
         fused_output = fused_output+noise_output
+
 
         return fused_output
   
