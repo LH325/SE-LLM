@@ -111,3 +111,170 @@ python -u run.py \
   --cosine \
   --tmax 10 \
   --weight_decay 0
+
+python -u run.py \
+  --task_name zero_shot_forecast \
+  --is_training 1 \
+  --root_path "Timeseriesdata" \
+  --data_path "m3_yearly_dataset.tsf" \
+  --test_data_path "m4_yearly_dataset.tsf" \
+  --seasonal_patterns 'Yearly' \
+  --data tsf \
+  --seq_len 6 \
+  --label_len 0 \
+  --token_len 6 \
+  --test_seq_len 6 \
+  --test_label_len 0 \
+  --test_pred_len 6 \
+  --batch_size 16 \
+  --word_size 1000 \
+  --llm_ckp_dir huggyllama/llama-7b \
+  --mlp_hidden_dim 256 \
+  --mlp_activation 'tanh' \
+  --des 'Exp' \
+  --itr 1 \
+  --learning_rate 0.00001 \
+  --loss 'SMAPE' \
+  --cosine \
+  --tmax 10 \
+  --weight_decay 0
+
+python -u run.py \
+  --task_name zero_shot_forecast \
+  --is_training 1 \
+  --root_path "Timeseriesdata" \
+  --data_path 'm3_quarterly_dataset.tsf' \
+  --test_data_path 'm4_quarterly_dataset.tsf' \
+  --seasonal_patterns 'Quarterly' \
+  --model SELLM \
+  --data tsf \
+  --seq_len 8 \
+  --label_len 0 \
+  --token_len 8 \
+  --test_seq_len 8  \
+  --test_label_len 0 \
+  --test_pred_len 8 \
+  --learning_rate 0.000005 \
+  --mlp_hidden_dim 2048 \
+  --mlp_activation 'relu' \
+  --batch_size 16  \
+  --des 'Exp' \
+  --llm_ckp_dir huggyllama/llama-7b \
+  --itr 1 \
+  --loss 'SMAPE' \
+  --use_amp \
+  --cosine \
+  --tmax 10 \
+  --weight_decay 0
+  # enhanced_text = torch.softmax(enhanced_text,dim=1)
+
+python -u run.py \
+  --task_name zero_shot_forecast \
+  --is_training 1 \
+  --root_path "Timeseriesdata" \
+  --data_path "m3_monthly_dataset.tsf" \
+  --test_data_path "m4_monthly_dataset.tsf" \
+  --seasonal_patterns 'Monthly' \
+  --data tsf \
+   --seq_len 24 \
+  --label_len 0 \
+  --token_len 24 \
+  --test_seq_len 24 \
+  --test_label_len 0 \
+  --test_pred_len 24 \
+  --batch_size 16 \
+  --word_size 1000 \
+  --llm_ckp_dir huggyllama/llama-7b \
+  --mlp_hidden_dim 512 \
+  --mlp_activation 'relu' \
+  --des 'Exp' \
+  --itr 1 \
+  --learning_rate 0.00003 \
+  --loss 'SMAPE' \
+  --cosine \
+  --tmax 10 \
+  --weight_decay 0
+
+  python -u run.py \
+  --task_name zero_shot_forecast \
+  --is_training 1 \
+  --root_path ./dataset/tsf \
+  --data_path m3_monthly_dataset.tsf \
+  --test_data_path m4_weekly_dataset.tsf \
+  --seasonal_patterns 'Monthly' \
+  --model_id m3_Monthly \
+  --model $model_name \
+  --data tsf \
+  --seq_len 26 \
+  --label_len 13 \
+  --token_len 13 \
+  --test_seq_len 26 \
+  --test_label_len 13 \
+  --test_pred_len 13 \
+  --learning_rate 0.00005 \
+  --mlp_hidden_dim 256 \
+  --mlp_activation 'relu' \
+  --batch_size 16 \
+  --des 'Exp' \
+  --itr 1 \
+  --loss 'SMAPE' \
+  --use_amp \
+  --cosine \
+  --tmax 10
+    # enhanced_text = torch.softmax(enhanced_text,dim=1)
+
+python -u run.py \
+  --task_name zero_shot_forecast \
+  --is_training 1 \
+  --root_path Timeseriesdata \
+  --data_path m3_monthly_dataset.tsf \
+  --test_data_path m4_daily_dataset.tsf \
+  --seasonal_patterns 'Monthly' \
+  --model_id m3_Monthly \
+  --model SELLM \
+  --data tsf \
+  --seq_len 28 \
+  --label_len 14 \
+  --token_len 14 \
+  --test_seq_len 28 \
+  --test_label_len 14 \
+  --test_pred_len 14 \
+  --learning_rate 0.00005 \
+  --mlp_hidden_dim 256 \
+  --batch_size 16 \
+  --des 'Exp' \
+  --itr 1 \
+  --loss 'SMAPE' \
+  --use_amp \
+  --cosine \
+  --tmax 10
+    # enhanced_text = torch.softmax(enhanced_text,dim=1)
+
+python -u run.py \
+  --task_name zero_shot_forecast \
+  --is_training 1 \
+  --root_path Timeseriesdata \
+  --data_path m3_monthly_dataset.tsf \
+  --test_data_path m4_hourly_dataset.tsf \
+  --seasonal_patterns 'Monthly' \
+  --model_id m3_Monthly \
+  --model SELLM \
+  --data tsf \
+  --seq_len 48 \
+  --label_len 24 \
+  --token_len 24 \
+  --test_seq_len 48 \
+  --test_label_len 24 \
+  --test_pred_len 48 \
+  --learning_rate 0.00005 \
+  --mlp_hidden_dim 128 \
+  --mlp_activation 'relu' \
+  --mlp_hidden_layers 2 \
+  --batch_size 16 \
+  --des 'Exp' \
+  --itr 1 \
+  --loss 'SMAPE' \
+  --use_amp \
+  --cosine \
+  --tmax 10
+    # enhanced_text = torch.softmax(enhanced_text,dim=1)
