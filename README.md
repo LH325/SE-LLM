@@ -1,9 +1,4 @@
-## Reproducibility Weights
 
-**SE-LLM Weights**
-
-Link: https://pan.baidu.com/s/1ca0Azm3CyNFuJ6RzbaC9mw?pwd=x4j5  
-Extraction code: x4j5
 
 ## Reproducibility Note
 
