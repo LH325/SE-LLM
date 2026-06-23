@@ -1,4 +1,8 @@
+For reproducibility, we provide the SE-LLM model weights.
 
+File: SE-LLM Weights
+Download link: https://pan.baidu.com/s/1TrKMAFtNUMYkRwssGsRETA?pwd=rx87
+Extraction code: rx87
 
 ## Reproducibility Note
 
