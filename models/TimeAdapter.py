@@ -29,7 +29,8 @@ def add_time_adapter(model, rank=8):
         layer.self_attn.v_proj = TimeLayer(layer.self_attn.v_proj, rank)
     return model
 
-# LoRA
+# LoRA-style adapter used in the paper ablation.
+
 class TimeLayer(nn.Module):
     def __init__(self, original_layer, rank=16):
         super().__init__()
