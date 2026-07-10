@@ -1,6 +1,3 @@
-# I don’t check GitHub frequently. If you have any questions, please contact me via email.
-
-
 For reproducibility, we provide the SE-LLM model weights.
 
 File: SE-LLM Weights
@@ -8,6 +5,10 @@ File: SE-LLM Weights
 Download link: https://pan.baidu.com/s/1TrKMAFtNUMYkRwssGsRETA?pwd=rx87
 
 Extraction code: rx87
+
+
+I don’t check GitHub frequently. If you have any questions, please contact me via email.
+
 
 ## Reproducibility Note
 
